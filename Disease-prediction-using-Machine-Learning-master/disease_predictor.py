@@ -5,8 +5,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn import tree
 
 # Load data
-df = pd.read_csv("Training.csv")
-test_df = pd.read_csv("Testing.csv")
+df = pd.read_csv("Disease-prediction-using-Machine-Learning-master/Training.csv")
+test_df = pd.read_csv("Disease-prediction-using-Machine-Learning-master/Testing.csv")
 
 # Replace disease names with numerical labels
 disease_map = {
