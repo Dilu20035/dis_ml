@@ -49,7 +49,7 @@ def main():
     st.title("Disease Predictor using Machine Learning")
     st.sidebar.title("Enter Symptoms")
 
-    df_train, df_test = load_data("Training.csv", "Testing.csv")
+    df_train, df_test = load_data("Disease-prediction-using-Machine-Learning-master/Training.csv", "Disease-prediction-using-Machine-Learning-master/Testing.csv")
     
     symptoms = [
         'back_pain','constipation','abdominal_pain','diarrhoea','mild_fever','yellow_urine',
