@@ -9,6 +9,7 @@ def load_data(train_file, test_file):
     df_test = pd.read_csv(test_file)
     
     # Replace disease names with numerical labels
+    # Disease map dictionary
     disease_map = {
         'Fungal infection':0,'Allergy':1,'GERD':2,'Chronic cholestasis':3,'Drug Reaction':4,
 'Peptic ulcer diseae':5,'AIDS':6,'Diabetes ':7,'Gastroenteritis':8,'Bronchial Asthma':9,'Hypertension ':10,
@@ -29,6 +30,7 @@ def train_models(df_train, symptoms):
     X_train = df_train[symptoms]
     y_train = df_train["prognosis"]
 
+    # Train classifiers
     clf_decision_tree = DecisionTreeClassifier().fit(X_train, y_train)
     clf_random_forest = RandomForestClassifier().fit(X_train, y_train)
     clf_naive_bayes = GaussianNB().fit(X_train, y_train)
@@ -47,7 +49,7 @@ def main():
     st.title("Disease Predictor using Machine Learning")
     st.sidebar.title("Enter Symptoms")
 
-    df_train, df_test = load_data("Disease-prediction-using-Machine-Learning-master/Training.csv", "Disease-prediction-using-Machine-Learning-master/Testing.csv")
+    df_train, df_test = load_data("Training.csv", "Testing.csv")
     
     symptoms = [
         'back_pain','constipation','abdominal_pain','diarrhoea','mild_fever','yellow_urine',
@@ -90,6 +92,17 @@ def main():
     if st.sidebar.button("Predict - Naive Bayes"):
         prediction_nb = predict_disease(clf_naive_bayes, symptoms, symptom_inputs)
         st.write(f"Predicted Disease (Naive Bayes): {prediction_nb}")
+
+    # Display the predicted disease names
+    diseases = {
+        # Define disease names according to the mapping
+    }
+    if prediction_dt in diseases:
+        st.write(f"Predicted Disease Name (Decision Tree): {diseases[prediction_dt]}")
+    if prediction_rf in diseases:
+        st.write(f"Predicted Disease Name (Random Forest): {diseases[prediction_rf]}")
+    if prediction_nb in diseases:
+        st.write(f"Predicted Disease Name (Naive Bayes): {diseases[prediction_nb]}")
 
 if __name__ == "__main__":
     main()
